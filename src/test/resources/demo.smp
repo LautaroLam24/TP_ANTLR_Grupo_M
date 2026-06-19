@@ -1,0 +1,41 @@
+// ============================================================
+//  Programa de demostración del lenguaje "Simple"
+//  Muestra: tipos, comentarios, variables, expresiones,
+//           print, if-else y la VARIANTE 1 (while).
+// ============================================================
+program demo {
+
+    /* Declaración de variables con tipo.
+       La inicialización es opcional. */
+    var nombre : string = "Lautaro";
+    var edad   : int    = 25;
+    var pi     : real   = 3.14;
+    var activo : bool   = true;
+
+    print("Hola, " + nombre);
+    print(edad);
+    print(pi);
+    print(activo);
+
+    // Expresiones aritméticas, relacionales y lógicas
+    var promedio : real;
+    promedio = (8 + 6 + 10) / 3.0;
+    print("Promedio: " + "calculado");
+    print(promedio);
+
+    // Condicional if-else
+    if (edad >= 18 && activo) {
+        print("Mayor de edad y activo");
+    } else {
+        print("No habilitado");
+    }
+
+    // VARIANTE 1: while (condición al inicio)
+    var i : int = 0;
+    while (i < 5) {
+        print(i);
+        i = i + 1;
+    }
+
+    print("Fin del conteo");
+}

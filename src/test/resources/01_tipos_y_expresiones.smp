@@ -1,0 +1,24 @@
+// Ejemplo 1: tipos de datos y expresiones
+program tipos_y_expresiones {
+
+    var entero  : int    = 10;
+    var realNum : real   = 2.5;
+    var texto   : string = "resultado";
+    var flag    : bool   = true;
+
+    // Aritmética (int + real -> real por promoción)
+    print(entero + realNum);     // 12.5
+    print(entero * 2);           // 20
+    print(entero - 4);           // 6
+    print(entero / 3);           // 3   (división entera)
+    print(entero / 4.0);         // 2.5 (división real)
+
+    // Relacionales y lógicas -> bool
+    print(entero > 5);           // true
+    print(entero == 10 && flag); // true
+    print(!flag);                // false
+    print(realNum < 2.0 || flag);// true
+
+    // Concatenación de cadenas con +
+    print(texto + " final");     // resultado final
+}

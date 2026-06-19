@@ -1,0 +1,22 @@
+// Ejemplo 2: condicional if-else
+program condicional {
+
+    var nota : int = 7;
+
+    if (nota >= 6) {
+        print("Aprobado");
+    } else {
+        print("Desaprobado");
+    }
+
+    // if anidado, sin else
+    var edad : int = 20;
+    if (edad >= 18) {
+        if (edad >= 65) {
+            print("Jubilado");
+        } else {
+            print("Adulto");
+        }
+    }
+
+}

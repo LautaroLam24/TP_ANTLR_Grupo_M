@@ -1,0 +1,20 @@
+// Ejemplo 5: factorial (combina variables, if y while)
+program factorial {
+
+    var n : int = 5;
+
+    if (n < 0) {
+        print("No definido para negativos");
+    } else {
+        var resultado : int = 1;
+        var k : int = 1;
+        while (k <= n) {
+            resultado = resultado * k;
+            k = k + 1;
+        }
+        print("Factorial de:");
+        print(n);
+        print("es:");
+        print(resultado);   // 120
+    }
+}

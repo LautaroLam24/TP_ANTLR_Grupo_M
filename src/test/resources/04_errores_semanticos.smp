@@ -1,0 +1,23 @@
+// Ejemplo 4: programa CON ERRORES (para ver el análisis semántico).
+// Este programa NO se ejecuta: el intérprete reporta todos los errores
+// detectados y se detiene antes de la ejecución.
+program con_errores {
+
+    var x : int = 5;
+    var x : int = 9;        // (1) redeclaración de 'x'
+
+    y = 3;                  // (2) variable no declarada 'y'
+
+    var z : int = "hola";   // (3) tipo incompatible: int <- string
+
+    var b : bool = true;
+    var s : int = b;        // (4) tipo incompatible: int <- bool
+
+    print(true + 1);        // (5) operación inválida: bool + int
+
+    print(10 / 0);          // (6) división por cero (estática)
+
+    if (x + 1) {            // (7) la condición no es bool
+        print("nope");
+    }
+}

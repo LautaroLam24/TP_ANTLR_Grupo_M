@@ -11,7 +11,7 @@ El árbol sintáctico generado por ANTLR se recorre con el patrón **Visitor**.
 ## Integrantes
 
 - Lautaro Lamaita
-- *(completar segundo integrante)*
+- Marcos Miño
 
 ## Variante asignada
 
@@ -157,7 +157,6 @@ interprete/
     │       ├── Interpreter.java        # 2da pasada: ejecución (Visitor)
     │       └── RuntimeError.java       # errores de tiempo de ejecución
     └── test/resources/                 # programas de ejemplo (.smp)
-        ├── test.smp
         ├── 01_tipos_y_expresiones.smp
         ├── 02_if_else.smp
         ├── 03_while.smp
@@ -185,19 +184,17 @@ mvn clean compile
 
 ### Ejecutar
 
-Con el programa por defecto (`src/test/resources/test.smp`):
+El archivo a interpretar se define en la variable `path` de `Main.java`. Por
+defecto es `src/test/resources/01_tipos_y_expresiones.smp`. Para probar otro
+ejemplo, cambiá esa ruta por la del archivo deseado (por ejemplo
+`src/test/resources/03_while.smp`) y volvé a ejecutar.
+
+- Desde IntelliJ: botón **Run (▶)** sobre `Main`.
+- Desde Maven:
 
 ```bash
 mvn exec:java
 ```
-
-Con un archivo específico:
-
-```bash
-mvn exec:java -Dexec.args="src/test/resources/03_while.smp"
-```
-
-> El argumento es la ruta al archivo fuente `.smp` (relativa a la raíz del proyecto).
 
 ### Ejecución sin Maven (opcional)
 
@@ -214,9 +211,9 @@ java -jar antlr-4.13.1-complete.jar -visitor -no-listener \
 javac -cp antlr-4.13.1-complete.jar -d out \
      $(find gen -name "*.java") $(find src/main/java -name "*.java")
 
-# 3) ejecutar
+# 3) ejecutar (usa el archivo definido en Main.java)
 java -cp "out:antlr-4.13.1-complete.jar" \
-     com.miorganizacion.simple.interprete.Main src/test/resources/03_while.smp
+     com.miorganizacion.simple.interprete.Main
 ```
 
 ---

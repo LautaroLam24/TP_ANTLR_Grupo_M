@@ -7,35 +7,23 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
-/**
- * Punto de entrada del intérprete.
- *
- * Flujo:
- *   1. Análisis léxico y sintáctico con ANTLR (errores acumulados).
- *   2. Si hubo errores léxicos/sintácticos -> se reportan y se aborta.
- *   3. Análisis semántico (SemanticAnalyzer).
- *   4. Si hubo errores semánticos -> se reportan y se aborta.
- *   5. Ejecución (Interpreter).
- *
- * Uso:
- *   mvn exec:java -Dexec.args="ruta/al/programa.smp"
- *   (sin argumentos toma src/test/resources/test.smp por defecto)
- */
+
 public class Main {
 
-    private static final String DEFAULT_FILE = "src/test/resources/test.smp";
-
     public static void main(String[] args) throws IOException {
-        // Salida en UTF-8 para que los acentos se vean bien en cualquier consola
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
 
-        String path = "src/test/resources/04_errores_semanticos.smp";
-        //String path = (args.length == 0) ? DEFAULT_FILE : args[0];
+        String path = "src/test/resources/01_tipos_y_expresiones.smp";
+        //String path = src/test/resources/02_if_else.smp
+        //String path = src/test/resources/03_while.smp
+        //String path = src/test/resources/04_errores_semanticos.smp
+        //String path = src/test/resources/05_factorial.smp
+
         System.out.println("== Intérprete Simple == archivo: " + path);
 
         CharStream input = CharStreams.fromFileName(path);
 
-        // --- Léxico + sintáctico, con listener que acumula errores ---
+
         SyntaxErrorListener syntaxErrors = new SyntaxErrorListener();
 
         SimpleLexer lexer = new SimpleLexer(input);

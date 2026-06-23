@@ -1,12 +1,6 @@
 package com.miorganizacion.simple.interprete;
 
-/**
- * Representa una variable dentro de la tabla de símbolos.
- *
- * En la pasada semántica interesa principalmente el {@code type} y si la
- * variable fue inicializada. En la pasada de ejecución, además, se guarda
- * el {@code value} en tiempo de ejecución (Integer, Double, String, Boolean).
- */
+
 public class Symbol {
 
     private final String name;

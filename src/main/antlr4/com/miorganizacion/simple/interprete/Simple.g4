@@ -16,9 +16,6 @@ statement
     | whileStmt
     ;
 
-// Declaración de variable: tipo obligatorio, inicialización opcional
-//   var edad : int;
-//   var pi   : real = 3.14;
 varDecl
     : VAR ID COLON type ( ASSIGN expression )? SEMI
     ;
@@ -33,12 +30,12 @@ printStmt
     : PRINT LPAREN expression RPAREN SEMI
     ;
 
-// Condicional con rama verdadera y falsa (el else es opcional)
+// Condicional if y else (el else es opcional)
 ifStmt
     : IF LPAREN expression RPAREN block ( ELSE block )?
     ;
 
-// VARIANTE 1: iteración con condición al inicio
+// VARIANTE 1: While
 whileStmt
     : WHILE LPAREN expression RPAREN block
     ;

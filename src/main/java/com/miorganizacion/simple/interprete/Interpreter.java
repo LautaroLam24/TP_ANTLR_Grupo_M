@@ -1,16 +1,5 @@
 package com.miorganizacion.simple.interprete;
 
-/**
- * SEGUNDA PASADA: ejecución.
- *
- * Solo corre si el análisis semántico no encontró errores. Recorre el árbol
- * con el patrón Visitor evaluando expresiones (devuelve Integer, Double,
- * String o Boolean) y ejecutando las sentencias (asignaciones, print,
- * if-else y while).
- *
- * Mantiene su propia {@link SymbolTable} con los VALORES en tiempo de
- * ejecución, con el mismo manejo de ámbitos que el analizador.
- */
 public class Interpreter extends SimpleBaseVisitor<Object> {
 
     private final SymbolTable env = new SymbolTable();
@@ -96,7 +85,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
             if (v instanceof Integer) return -(Integer) v;
             return -(Double) v;
         }
-        return !(Boolean) v; // '!'
+        return !(Boolean) v;
     }
 
     @Override
@@ -147,7 +136,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
             case ">":  return a > b;
             case "<":  return a < b;
             case ">=": return a >= b;
-            default:   return a <= b; // "<="
+            default:   return a <= b;
         }
     }
 
@@ -166,7 +155,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
 
     @Override
     public Object visitAndExpr(SimpleParser.AndExprContext ctx) {
-        // cortocircuito: si el izquierdo es false, no evalúa el derecho
+        //si el izquierdo es false, no evalúa el derecho
         if (!(Boolean) visit(ctx.left)) return false;
         return (Boolean) visit(ctx.right);
     }
@@ -218,7 +207,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
         }
     }
 
-    /** Promueve un Integer a Double cuando la variable destino es real. */
+    //Promueve un Integer a Double cuando la variable destino es real.
     private Object coerce(Type target, Object value) {
         if (target == Type.REAL && value instanceof Integer) {
             return ((Integer) value).doubleValue();
@@ -230,7 +219,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
         return ((Number) o).doubleValue();
     }
 
-    /** Formatea un valor para imprimirlo por consola. */
+    //Formatea un valor para imprimirlo por consola.
     private String format(Object value) {
         if (value instanceof Double) {
             double d = (Double) value;
@@ -241,7 +230,7 @@ public class Interpreter extends SimpleBaseVisitor<Object> {
         return String.valueOf(value);
     }
 
-    /** Quita las comillas externas e interpreta los escapes básicos. */
+    // Quita las comillas externas e interpreta los escapes básicos.
     private String unescape(String raw) {
         String body = raw.substring(1, raw.length() - 1);
         StringBuilder sb = new StringBuilder();

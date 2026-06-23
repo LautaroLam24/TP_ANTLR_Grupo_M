@@ -3,20 +3,6 @@ package com.miorganizacion.simple.interprete;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * PRIMERA PASADA: análisis semántico.
- *
- * Recorre el árbol con el patrón Visitor devolviendo el {@link Type} de cada
- * expresión y acumulando errores. Detecta:
- *   - uso de variables no declaradas;
- *   - redeclaración de variables (en el mismo ámbito);
- *   - incompatibilidades de tipos (declaración, asignación, condiciones);
- *   - operaciones inválidas (p. ej. sumar bool, negar un número);
- *   - división por cero detectable de forma estática (divisor literal 0).
- *
- * Cuando una sub-expresión ya falló se devuelve {@link Type#ERROR} para no
- * encadenar errores en cascada.
- */
 public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
 
     private final SymbolTable symbols = new SymbolTable();
@@ -54,7 +40,7 @@ public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
                 error(line, "no se puede inicializar '" + name + "' (" + declared
                         + ") con un valor de tipo " + valueType);
             }
-            s.setValue(null); // marcado como inicializado a nivel semántico
+            s.setValue(null);
         }
         return null;
     }

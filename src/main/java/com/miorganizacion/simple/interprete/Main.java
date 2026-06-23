@@ -14,10 +14,10 @@ public class Main {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
 
         String path = "src/test/resources/01_tipos_y_expresiones.smp";
-        //String path = src/test/resources/02_if_else.smp
-        //String path = src/test/resources/03_while.smp
-        //String path = src/test/resources/04_errores_semanticos.smp
-        //String path = src/test/resources/05_factorial.smp
+        //String path = "src/test/resources/02_if_else.smp";
+        //String path = "src/test/resources/03_while.smp";
+        //String path = "src/test/resources/04_errores_semanticos.smp";
+        //String path = "src/test/resources/05_factorial.smp";
 
         System.out.println("== Intérprete Simple == archivo: " + path);
 

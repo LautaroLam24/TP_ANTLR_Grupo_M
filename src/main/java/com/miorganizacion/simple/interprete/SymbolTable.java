@@ -26,17 +26,12 @@ public class SymbolTable {
         return scopes.peek().containsKey(name);
     }
 
-    /** Declara una variable en el ámbito actual. Devuelve el símbolo creado. */
     public Symbol declare(String name, Type type) {
         Symbol s = new Symbol(name, type);
         scopes.peek().put(name, s);
         return s;
     }
 
-    /**
-     * Busca una variable desde el ámbito actual hacia los externos.
-     * Devuelve null si no está declarada en ningún ámbito visible.
-     */
     public Symbol resolve(String name) {
         for (Map<String, Symbol> scope : scopes) {
             Symbol s = scope.get(name);

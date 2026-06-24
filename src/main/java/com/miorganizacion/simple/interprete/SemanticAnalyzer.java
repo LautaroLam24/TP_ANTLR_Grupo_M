@@ -66,7 +66,7 @@ public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
 
     @Override
     public Type visitPrintStmt(SimpleParser.PrintStmtContext ctx) {
-        visit(ctx.expression()); // cualquier tipo es imprimible
+        visit(ctx.expression());
         return null;
     }
 
@@ -127,7 +127,7 @@ public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
         if (ctx.op.getText().equals("-")) {
             if (t.isNumeric()) return t;
             error(line, "el operador unario '-' requiere un número, no " + t);
-        } else { // '!'
+        } else {
             if (t == Type.BOOL) return Type.BOOL;
             error(line, "el operador '!' requiere un bool, no " + t);
         }
@@ -162,7 +162,6 @@ public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
         if (l.isNumeric() && r.isNumeric()) {
             return numericResult(l, r);
         }
-        // El '+' también concatena cadenas
         if (ctx.op.getText().equals("+") && l == Type.STRING && r == Type.STRING) {
             return Type.STRING;
         }
@@ -235,15 +234,13 @@ public class SemanticAnalyzer extends SimpleBaseVisitor<Type> {
         return (l == Type.REAL || r == Type.REAL) ? Type.REAL : Type.INT;
     }
 
-    /** ¿Se puede asignar un valor de tipo {@code source} a un destino {@code target}? */
     private boolean assignable(Type target, Type source) {
-        if (source == Type.ERROR) return true;            // ya reportado, no encadenar
+        if (source == Type.ERROR) return true;
         if (target == source) return true;
-        if (target == Type.REAL && source == Type.INT) return true; // promoción int -> real
+        if (target == Type.REAL && source == Type.INT) return true;
         return false;
     }
 
-    /** Detecta un divisor literal cero (desenvuelve paréntesis). */
     private boolean isLiteralZero(SimpleParser.ExpressionContext ctx) {
         while (ctx instanceof SimpleParser.ParenExprContext) {
             ctx = ((SimpleParser.ParenExprContext) ctx).expression();

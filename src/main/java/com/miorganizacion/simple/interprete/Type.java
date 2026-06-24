@@ -6,7 +6,6 @@ public enum Type {
     REAL,
     STRING,
     BOOL,
-    // Tipo de error: se devuelve cuando una sub-expresión ya falló,
     // para no encadenar errores en cascada.
     ERROR;
 

@@ -1,8 +1,6 @@
 grammar Simple;
 
-/* =========================================================
-   PARSER
-   ========================================================= */
+//PARSER
 
 program
     : PROGRAM ID LBRACE statement* RBRACE EOF
@@ -51,8 +49,7 @@ type
     | T_BOOL     # tipoBool
     ;
 
-// Expresiones con precedencia resuelta por el ORDEN de las alternativas
-// (las de arriba ligan más fuerte). ANTLR4 maneja la recursión a izquierda.
+
 expression
     : LPAREN expression RPAREN                                  # parenExpr
     | op=( MINUS | NOT ) expression                             # unaryExpr
@@ -69,11 +66,9 @@ expression
     | ID                                                        # idExpr
     ;
 
-/* =========================================================
-   LEXER
-   ========================================================= */
 
-// --- Palabras reservadas (deben ir ANTES de ID) ---
+//LEXER
+//Palabras reservadas
 PROGRAM : 'program' ;
 VAR     : 'var' ;
 PRINT   : 'print' ;
@@ -88,7 +83,7 @@ T_BOOL   : 'bool' ;
 
 BOOL_LIT : 'true' | 'false' ;
 
-// --- Operadores ---
+//Operadores
 PLUS  : '+' ;
 MINUS : '-' ;
 MULT  : '*' ;
@@ -98,7 +93,6 @@ AND : '&&' ;
 OR  : '||' ;
 NOT : '!' ;
 
-// Los de dos caracteres antes que los de uno (claridad; ANTLR usa maximal munch igual)
 GEQ : '>=' ;
 LEQ : '<=' ;
 EQ  : '==' ;
@@ -108,7 +102,7 @@ LT  : '<' ;
 
 ASSIGN : '=' ;
 
-// --- Símbolos ---
+//Símbolos
 LBRACE : '{' ;
 RBRACE : '}' ;
 LPAREN : '(' ;
@@ -116,13 +110,13 @@ RPAREN : ')' ;
 SEMI   : ';' ;
 COLON  : ':' ;
 
-// --- Literales (REAL antes que INT para que gane el match más largo) ---
+//Literales
 REAL_LIT   : [0-9]+ '.' [0-9]+ ;
 INT_LIT    : [0-9]+ ;
 STRING_LIT : '"' ( ~["\\\r\n] | '\\' . )* '"' ;
 ID         : [a-zA-Z_] [a-zA-Z0-9_]* ;
 
-// --- Comentarios y espacios (se descartan) ---
+//Comentarios y espacios (se descartan)
 LINE_COMMENT  : '//' ~[\r\n]*    -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/'    -> skip ;
 WS            : [ \t\r\n]+       -> skip ;
